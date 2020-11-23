@@ -29616,6 +29616,7 @@ const char *X86TargetLowering::getTargetNodeName(unsigned Opcode) const {
   case X86ISD::FST:                return "X86ISD::FST";
   case X86ISD::CALL:               return "X86ISD::CALL";
   case X86ISD::BT:                 return "X86ISD::BT";
+  case X86ISD::SWIFTCMP:           return "X86ISD::SWIFTCMP";
   case X86ISD::CMP:                return "X86ISD::CMP";
   case X86ISD::STRICT_FCMP:        return "X86ISD::STRICT_FCMP";
   case X86ISD::STRICT_FCMPS:       return "X86ISD::STRICT_FCMPS";

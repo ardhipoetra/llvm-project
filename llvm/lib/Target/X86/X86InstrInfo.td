@@ -18,6 +18,8 @@
 
 def SDTX86CmpTest : SDTypeProfile<1, 2, [SDTCisVT<0, i32>, SDTCisSameAs<1, 2>]>;
 
+def X86swiftcmp : SDNode<"X86ISD::SWIFTCMP", SDTX86CmpTest>;
+
 def SDTX86Cmps : SDTypeProfile<1, 3, [SDTCisFP<0>, SDTCisSameAs<1, 2>, SDTCisVT<3, i8>]>;
 //def SDTX86Cmpss : SDTypeProfile<1, 3, [SDTCisVT<0, f32>, SDTCisSameAs<1, 2>, SDTCisVT<3, i8>]>;
 
@@ -3019,6 +3021,8 @@ include "X86InstrSystem.td"
 // Compiler Pseudo Instructions and Pat Patterns
 include "X86InstrCompiler.td"
 include "X86InstrVecCompiler.td"
+
+include "X86InstrSwift.td"
 
 //===----------------------------------------------------------------------===//
 // Assembler Mnemonic Aliases

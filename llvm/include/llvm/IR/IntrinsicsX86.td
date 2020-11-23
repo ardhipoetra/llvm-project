@@ -2618,6 +2618,7 @@ let TargetPrefix = "x86" in {  // All intrinsics start with "llvm.x86.".
               Intrinsic<[], [], []>;
   def int_x86_xabort : GCCBuiltin<"__builtin_ia32_xabort">,
               Intrinsic<[], [llvm_i8_ty], [ImmArg<0>]>;
+        // Intrinsic<[], [llvm_i8_ty], []>;
   def int_x86_xtest : GCCBuiltin<"__builtin_ia32_xtest">,
               Intrinsic<[llvm_i32_ty], [], []>;
 }
@@ -4921,4 +4922,88 @@ let TargetPrefix = "x86" in {
               Intrinsic<[llvm_i8_ty], [llvm_ptr_ty, llvm_ptr_ty], []>;
   def int_x86_enqcmds : GCCBuiltin<"__builtin_ia32_enqcmds">,
               Intrinsic<[llvm_i8_ty], [llvm_ptr_ty, llvm_ptr_ty], []>;
+}
+
+//===----------------------------------------------------------------------===//
+// Swift hardening intrinsics
+
+// moves + cmp
+let TargetPrefix = "x86" in {
+  def int_x86_movswift : Intrinsic<[llvm_anyint_ty], [LLVMMatchType<0>],
+                                   [IntrNoMem]>;
+  def int_x86_cmpswift : Intrinsic<[llvm_i1_ty], [llvm_anyint_ty, LLVMMatchType<0>],
+                                   [IntrNoMem]>;
+}
+
+let TargetPrefix = "x86" in {
+  def int_x86_fmovswift : Intrinsic<[llvm_anyfloat_ty], [LLVMMatchType<0>],
+                                    [IntrNoMem]>;
+}
+
+let TargetPrefix = "x86" in {
+  // double quadword integers
+  def int_x86_dqmovswift : Intrinsic<[llvm_v2i64_ty], [llvm_v2i64_ty],
+                                     [IntrNoMem]>;
+  // packed doubles
+  def int_x86_pdmovswift : Intrinsic<[llvm_v2f64_ty], [llvm_v2f64_ty],
+                                     [IntrNoMem]>;
+  // packed singles (floats)
+  def int_x86_psmovswift : Intrinsic<[llvm_v4f32_ty], [llvm_v4f32_ty],
+                                     [IntrNoMem]>;
+}
+
+// subs
+let TargetPrefix = "x86" in {
+  def int_x86_subswift : Intrinsic<[llvm_anyint_ty],
+                                   [LLVMMatchType<0>, LLVMMatchType<0>],
+                                   [IntrNoMem]>;
+}
+
+let TargetPrefix = "x86" in {
+  def int_x86_fsubswift : Intrinsic<[llvm_anyfloat_ty],
+                                    [LLVMMatchType<0>, LLVMMatchType<0>],
+                                    [IntrNoMem]>;
+}
+
+let TargetPrefix = "x86" in {
+  // double quadword integers
+  def int_x86_dqsubswift : Intrinsic<[llvm_v2i64_ty],
+                                     [llvm_v2i64_ty, llvm_v2i64_ty],
+                                     [IntrNoMem]>;
+  // packed doubles
+  def int_x86_pdsubswift : Intrinsic<[llvm_v2f64_ty],
+                                     [llvm_v2f64_ty, llvm_v2f64_ty],
+                                     [IntrNoMem]>;
+  // packed singles (floats)
+  def int_x86_pssubswift : Intrinsic<[llvm_v4f32_ty],
+                                     [llvm_v4f32_ty, llvm_v4f32_ty],
+                                     [IntrNoMem]>;
+}
+
+// nops
+let TargetPrefix = "x86" in {
+  def int_x86_nopsubswift : Intrinsic<[llvm_anyint_ty],
+                                      [LLVMMatchType<0>, LLVMMatchType<0>],
+                                      [IntrNoMem]>;
+}
+
+let TargetPrefix = "x86" in {
+  def int_x86_fnopsubswift : Intrinsic<[llvm_anyfloat_ty],
+                                       [LLVMMatchType<0>, LLVMMatchType<0>],
+                                       [IntrNoMem]>;
+}
+
+let TargetPrefix = "x86" in {
+  // double quadword integers
+  def int_x86_dqnopsubswift : Intrinsic<[llvm_v2i64_ty],
+                                        [llvm_v2i64_ty, llvm_v2i64_ty],
+                                        [IntrNoMem]>;
+  // packed doubles
+  def int_x86_pdnopsubswift : Intrinsic<[llvm_v2f64_ty],
+                                        [llvm_v2f64_ty, llvm_v2f64_ty],
+                                        [IntrNoMem]>;
+  // packed singles (floats)
+  def int_x86_psnopsubswift : Intrinsic<[llvm_v4f32_ty],
+                                        [llvm_v4f32_ty, llvm_v4f32_ty],
+                                        [IntrNoMem]>;
 }

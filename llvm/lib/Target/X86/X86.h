@@ -27,6 +27,8 @@ class X86RegisterBankInfo;
 class X86Subtarget;
 class X86TargetMachine;
 
+FunctionPass *createX86ReplaceSwift();
+
 /// This pass converts a legalized DAG into a X86-specific DAG, ready for
 /// instruction scheduling.
 FunctionPass *createX86ISelDag(X86TargetMachine &TM,
